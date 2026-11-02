@@ -1,0 +1,14 @@
+{
+  "name": "mundo-dos-macacos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo educativo e interativo sobre espécies de macacos.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
