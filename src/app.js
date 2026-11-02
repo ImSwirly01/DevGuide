@@ -1,11 +1,12 @@
 import { species } from "./species.js";
 
-const grid = document.querySelector("#species-grid");
-const search = document.querySelector("#search");
-const continent = document.querySelector("#continent");
-const status = document.querySelector("#status");
-const count = document.querySelector("#result-count");
-const empty = document.querySelector("#empty-state");
+const hasDOM = typeof document !== "undefined";
+const grid = hasDOM ? document.querySelector("#species-grid") : null;
+const search = hasDOM ? document.querySelector("#search") : null;
+const continent = hasDOM ? document.querySelector("#continent") : null;
+const status = hasDOM ? document.querySelector("#status") : null;
+const count = hasDOM ? document.querySelector("#result-count") : null;
+const empty = hasDOM ? document.querySelector("#empty-state") : null;
 
 function card(item) {
   const article = document.createElement("article");
@@ -43,6 +44,7 @@ export function filterSpecies(items, filters = {}) {
 }
 
 function render() {
+  if (!hasDOM) return;
   const results = filterSpecies(species, {
     search: search.value,
     continent: continent.value,
@@ -53,5 +55,7 @@ function render() {
   empty.hidden = results.length !== 0;
 }
 
-for (const control of [search, continent, status]) control.addEventListener("input", render);
-render();
+if (hasDOM) {
+  for (const control of [search, continent, status]) control.addEventListener("input", render);
+  render();
+}
